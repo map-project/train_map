@@ -1,6 +1,17 @@
 <html>
-  <link rel="stylesheet" href=".style/main.css">
-<div id="dvTable">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+      <script type='text/javascript' src='http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js'></script>
+
+       <body>
+       	<div id="map" style=" 
+       	
+      	   min-height: 500px;
+      	   min-width: 500px;
+ 			height: auto;
+ 			width: auto;
+     border: 1px solid #AAA; "></div>
   	<script src="./js/get.js"></script>
   <script src="./js/load_json_1.js"></script>
  <script>
@@ -11,5 +22,29 @@ var _api="https://api.railwayapi.com/v2/route/train/"+$_GET.train+"/apikey/"+_ap
  <script src="./js/load_json_2.js"></script>
   <script>
    
+       		var map = L.map( 'map', {
+  center: [28, 77],
+  minZoom: 0,
+  zoom: 7
+})
+       		L.tileLayer( 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  subdomains: ['a', 'b', 'c']
+}).addTo( map )
+       		var myIcon = L.icon({
+  iconUrl: 'images/pin48.png',
+  iconRetinaUrl:  'images/pin48.png',
+  iconSize: [29, 24],
+  iconAnchor: [9, 21],
+  popupAnchor: [0, -14]
+})
+  
+          for(i=0;i<_data.route.length;i++)
+{
+L.marker([_data.route[_i].station.lat,_data.route[_i].station.lng, {icon: myIcon}).bindPopup(_data.route[_i].station.name+ '<br>'+_data.route[_i].station.code).addTo(map);
+}
+          
+          
+          
 </script>
 </html>
