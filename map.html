@@ -41,7 +41,7 @@ var _api="https://api.railwayapi.com/v2/route/train/"+$_GET.train+"/apikey/"+_ap
   
 for(var _i=0;_i<_data.route.length;_i++)
 { 
-    L.marker([_data.route[i].details.latitude, _data.route[i].details.longitude],
+    L.marker([_data.route[_i].station.lat, _data.route[_i].station.lng],
  {icon: myIcon})
     .addTo(map);
     }
