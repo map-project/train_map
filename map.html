@@ -43,6 +43,8 @@ for(var _i=0;_i<_data.route.length;_i++)
 { 
     L.marker([_data.route[_i].station.lat, _data.route[_i].station.lng],
  {icon: myIcon})
+    
+.bindPopup(_data.route[_i].station.name+ '<br>'+_data.route[_i].station.code)
     .addTo(map);
     }
    
